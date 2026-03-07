@@ -8,7 +8,7 @@ matplotlib.use("Agg")
 import io, os, time
 
 st.set_page_config(
-    page_title="Audio Authenticity",
+    page_title="Deepfake Audio Authenticity Detection",
     page_icon="🎙",
     layout="centered",
     initial_sidebar_state="collapsed",
@@ -279,7 +279,7 @@ def audio_features(y, sr):
 st.markdown("""
 <div class="hero">
     <div class="hero-chip">Deep Learning · CNN · Mel Spectrogram</div>
-    <div class="hero-title">Audio Authenticity</div>
+    <div class="hero-title">Audio Authenticity Detector</div>
     <div class="hero-sub">Detect AI-generated and deepfake audio<br>with neural network analysis.</div>
 </div>
 """, unsafe_allow_html=True)
@@ -342,7 +342,7 @@ if uploaded:
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
     # Analyse button
-    run = st.button("Analyse with CNN", use_container_width=True)
+    run = st.button("Analyse", use_container_width=True)
 
     if run:
         prog   = st.progress(0)
