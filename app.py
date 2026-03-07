@@ -230,17 +230,19 @@ div[data-testid="stProgressBar"] > div > div { background: #0071e3 !important; b
 """, unsafe_allow_html=True)
 
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+# ── Model (cached) ────────────────────────────────────────────────────────────
 
-def load_model(path="audio_deepfake_model.h5"):
-    try:
-        import tensorflow as tf
-        for p in [path, "deepfake_audio_cnn.h5", "model.h5"]:
-            if os.path.exists(p):
-                return tf.keras.models.load_model(p)
-    except Exception:
-        pass
+@st.cache_resource
+def load_keras_model():
+    """Load the TF/Keras model once and cache it for the session."""
+    import tensorflow as tf
+    for p in ["audio_deepfake_model.h5", "deepfake_audio_cnn.h5", "model.h5"]:
+        if os.path.exists(p):
+            return tf.keras.models.load_model(p)
     return None
+
+
+# ── Helpers ───────────────────────────────────────────────────────────────────
 
 def extract_mel(raw_bytes, sr=22050, n_mels=128):
     y, sr = librosa.load(io.BytesIO(raw_bytes), sr=sr, mono=True)
@@ -335,7 +337,7 @@ if uploaded:
 
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
-    # Mel spectrogram only — no waveform
+    # Mel spectrogram
     st.markdown('<div class="section-label">Mel Spectrogram</div>', unsafe_allow_html=True)
     st.pyplot(plot_mel(mel_db, sr), use_container_width=True)
 
@@ -358,7 +360,7 @@ if uploaded:
             prog.progress(int((i + 1) / len(steps) * 100))
         prog.empty(); status.empty()
 
-        model = load_model()
+        model = load_keras_model()
 
         train_min = float(np.load("train_min.npy")) if os.path.exists("train_min.npy") else -80.0
         train_max = float(np.load("train_max.npy")) if os.path.exists("train_max.npy") else 0.0
