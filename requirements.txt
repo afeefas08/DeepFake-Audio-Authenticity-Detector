@@ -8,3 +8,6 @@ matplotlib==3.8.3
 soundfile==0.12.1
 numba==0.59.0
 llvmlite==0.42.0
+audioread>=2.1.9
+resampy>=0.4.2
+pooch>=1.0
