@@ -14,13 +14,13 @@ The application is built with **Python, TensorFlow, Librosa, NumPy, and Streamli
 
 ## 📸 User Interface
 
-![User Interface](Screenshot 2026-09-08 212442-1.png)
+![User Interface](screenshots/front-ui.png)
 
-![Mel Spectrogram](Screenshot 2026-09-08 212622-2.png)
+![Mel Spectrogram](screenshots/mel-spectrogram.png)
 
-![Real Audio Analysis](Screenshot 2026-09-08 212838-3.png)
+![Real Audio Analysis](screenshots/real-analysis.png)
 
-![DeepFake Audio Analysis](Screenshot 2026-09-08 212918-4.png)
+![DeepFake Audio Analysis](screenshots/fake-analysis.png)
 
 The application provides a simple interface where users can upload an audio file and analyze its authenticity.
 
@@ -129,7 +129,10 @@ DeepFake-Audio-Authenticity-Detector/
 ├── README.md
 │
 └── screenshots/
-    └── user-interface.png
+    ├── front-ui.png
+    ├── mel-spectrogram.png
+    ├── real-analysis.png
+    └── fake-analysis.png
 ```
 
 ---
